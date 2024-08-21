@@ -82,7 +82,7 @@ export function calculateTotal(): number {
   return Object.entries(cart).reduce((total, [productId, quantity]) => {
     const product = stock[productId];
     total = total + product.price * quantity;
-    return total;
+    return applyShippingDiscount(total);
   }, 0);
 }
 
@@ -101,7 +101,13 @@ export function clearCart(): Record<string, number> {
  * @param {number} total - The total cost to apply the discount to.
  * @return {number} The total cost with the discount applied, or the original total cost if the discount is not applicable.
  */
-// export function applyShippingDiscount(total: number): number {
-//   // Activity 1 code here
-//   return 0;
-// }
+export function applyShippingDiscount(total: number): number {
+  // Activity 1 code here
+  if (total >= 500) {
+    total *= 0.9;
+  }
+  return total;
+}
+
+
+
